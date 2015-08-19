@@ -5,7 +5,7 @@ from sklearn.metrics import accuracy_score
 from nltk.corpus import stopwords
 from nltk.stem.snowball import SnowballStemmer
 
-genreTrain = ["./res/train/hiphop"]
+genreTrain = ["./res/train/hiphop", "./res/train/country"]
 
 lyrics = []
 genre = []
@@ -14,7 +14,6 @@ stemmer = SnowballStemmer("english")
 for genrePath in genreTrain:
 	for subdir, dirs, files in os.walk(genrePath):
 		for f in files:
-			print f
 			temp = ""
 			pth = os.path.join(subdir, f)
 			fileLyrics = open(pth).read().decode('utf-8')
@@ -27,7 +26,7 @@ for genrePath in genreTrain:
 			if genrePath == genreTrain[0]:
 				genre.append("HH")
 			else:
-				genre.append("SG")
+				genre.append("CN")
 				
 
 sw = stopwords.words("english")
