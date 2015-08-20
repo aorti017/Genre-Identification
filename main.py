@@ -58,16 +58,16 @@ testCount = countVec.transform(testSet)
 
 clfMNB = MultinomialNB(alpha=.5).fit(trainCount, genre)
 predicted = clfMNB.predict(testCount)
-print "Multinomial Naive Bayes Accuracy: " + str(accuracy_score(predicted, predTest))
+print "Multinomial Naive Bayes Accuracy: " + str(round(accuracy_score(predicted, predTest), 3))
 
 clfGNB = GaussianNB().fit(trainCount.toarray(), genre)
 predicted = clfGNB.predict(testCount.toarray())
-print "Gaussian Naive Bayes Accuracy: " + str(accuracy_score(predicted, predTest))
+print "Gaussian Naive Bayes Accuracy: " + str(round(accuracy_score(predicted, predTest), 3))
 
 clfSVM = svm.SVC().fit(trainCount, genre)
 predicted = clfSVM.predict(testCount)
-print "SVM Accuracy: " + str(accuracy_score(predicted, predTest))
+print "SVM Accuracy: " + str(round(accuracy_score(predicted, predTest), 3))
 
 clfDT = tree.DecisionTreeClassifier().fit(trainCount.toarray(), genre)
 predicted = clfDT.predict(testCount.toarray())
-print "Decision Tree Accuracy: " + str(accuracy_score(predicted, predTest))
+print "Decision Tree Accuracy: " + str(round(accuracy_score(predicted, predTest), 3))
