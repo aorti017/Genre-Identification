@@ -1,5 +1,6 @@
 import os, string, codecs
-from sklearn.naive_bayes import MultinomialNB
+from sklearn import svm, tree
+from sklearn.naive_bayes import MultinomialNB, GaussianNB
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import accuracy_score
 from nltk.corpus import stopwords
@@ -34,7 +35,7 @@ for genrePath in genreTrain:
 for genrePath in genreTest:
 	for subdir, dirs, files in os.walk(genrePath):
 		for f in files:
-			print f
+			#print f
 			temp = ""
 			pth = os.path.join(subdir, f)
 			fileLyrics = open(pth).read().decode('utf-8')
@@ -53,10 +54,20 @@ sw = stopwords.words("english")
 
 countVec = CountVectorizer(stop_words=sw)
 trainCount = countVec.fit_transform(lyrics)
-
-classifier = MultinomialNB(alpha=.5).fit(trainCount, genre)
-
 testCount = countVec.transform(testSet)
-predicted = classifier.predict(testCount)
-print "Accuracy: " + str(accuracy_score(predicted, predTest))
-print predicted
+
+clfMNB = MultinomialNB(alpha=.5).fit(trainCount, genre)
+predicted = clfMNB.predict(testCount)
+print "Multinomial Naive Bayes Accuracy: " + str(accuracy_score(predicted, predTest))
+
+clfGNB = GaussianNB().fit(trainCount.toarray(), genre)
+predicted = clfGNB.predict(testCount.toarray())
+print "Gaussian Naive Bayes Accuracy: " + str(accuracy_score(predicted, predTest))
+
+clfSVM = svm.SVC().fit(trainCount, genre)
+predicted = clfSVM.predict(testCount)
+print "SVM Accuracy: " + str(accuracy_score(predicted, predTest))
+
+clfDT = tree.DecisionTreeClassifier().fit(trainCount.toarray(), genre)
+predicted = clfDT.predict(testCount.toarray())
+print "Decision Tree Accuracy: " + str(accuracy_score(predicted, predTest))
