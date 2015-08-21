@@ -79,10 +79,10 @@ def main():
 	print "Using Count Vectorizer\n----------"
 	getPreAcc(trainCount, testCount, predTest, genre)
 	
-	print "\nUsing TF-IDF Vectorizer\n----------"
 	tfidfVec = TfidfTransformer().fit(trainCount)
 	trainCount = tfidfVec.transform(trainCount)
 	testCount = tfidfVec.transform(testCount)
+	print "\nUsing TF-IDF Vectorizer\n----------"
 	getPreAcc(trainCount, testCount, predTest, genre)
 
 
