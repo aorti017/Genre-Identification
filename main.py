@@ -18,9 +18,9 @@ def getPreAcc(trainCount, testCount, predTest, genre):
 	predicted = clfGNB.predict(testCount.toarray())
 	print "Gaussian Naive Bayes Accuracy: " + str(round(accuracy_score(predicted, predTest), 3))
 	
-	clfSVM = svm.SVC().fit(trainCount, genre)
+	clfSVM = svm.SVC(kernel="linear").fit(trainCount, genre)
 	predicted = clfSVM.predict(testCount)
-	print "SVM Accuracy: " + str(round(accuracy_score(predicted, predTest), 3))
+	print "Support Vector Classifier Accuracy: " + str(round(accuracy_score(predicted, predTest), 3))
 	
 	clfDT = tree.DecisionTreeClassifier().fit(trainCount.toarray(), genre)
 	predicted = clfDT.predict(testCount.toarray())
