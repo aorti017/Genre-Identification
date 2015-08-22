@@ -9,3 +9,15 @@ The training data goes through preprocessing, stemming and then the removal of s
 After the classifier is trained, the testing data goes through the same preprocessing and is then used to obtain predictions from the various classifiers.
 The training and testing data can be found in ```./res/```.   
 
+
+Notes
+---------
+* Before tuning the classifiers, the bag of words model gave a higher accuracy score then the tf-idf model. After tuning both models gave approximately the same accuracy score.
+* I found that the Support Vector Classifier with a linear kernel gave the highest accuracy score. 
+* Any parameter not passed to the classifier did not substantially affect the classifiers accuracy score. 
+
+
+To Do
+---------
+* Add remaining testing and training data.
+* Introduce another music genre to the training and testing dataset. 
